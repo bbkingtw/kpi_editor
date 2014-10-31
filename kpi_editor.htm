@@ -1,0 +1,117 @@
+<div id="container2" text-align='center'>this ia the chart1</div>
+
+<script src="httpx://code.highcharts.com/modules/data.js"></script>
+<script src="httpx://code.highcharts.com/modules/exporting.js"></script>
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.angularjs.org/1.3.0/angular.js"></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js'></script>
+<div id="container" text-align='center'>this ia the chart1</div>
+<div ng-app="myApp" ng-controller="myCtrl">
+    <select ng-model="op_field" ng-options="x for x in ['colors','types']"></select>
+    <input ng-model="op_value" />
+    <button ng-click="add_list()">append</button>
+    <button ng-click="test_table_data()">test_table_data</button>
+    <table border="1" id='kpi'>
+        <tbody>
+            <tr>
+                <td>kpi_name</td>
+                <td>color</td>
+                <td>type</td>
+                <td>data</td>
+                <td>action
+                    <button ng-click='new_row()'>append</button>
+                </td>
+            </tr>
+            <tr ng-repeat="row in chart_options.series">
+                <td>
+                    <input ng-model="row.name" />
+                </td>
+                <td>
+                    <select ng-model="row.color" ng-change="change()" ng-options="color for color in colors"></select>
+                </td>
+                <td>
+                    <select ng-model="row.type" ng-change="change()" ng-options="type for type in types"></select>
+                </td>
+                <td>
+                    <input ng-model="row.data" ng-change="convert_number(row.data)" ng-list="," />
+                </td>
+                <td>
+                    <button ng-click='copy_row($index)'>copy</button>
+                    <button ng-click='del_row($index)'>delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan='100%'>
+                    <button ng-click='paste_grid()'>paste data from excel</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>{{cnt}}
+    <div>{{configs}}</div>
+    <div>{{colors}}</div>
+    <div>{{types}}</div>
+    <hr />
+    <button ng-click="draw()">draw this</button>
+    
+    <table id='xdata' border='1'>
+        <thead>
+            <tr>
+                <th>x</th>
+                <th>color</th>
+                <th>b</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>x</td>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <th>y</th>
+                <td>5</td>
+                <td>3</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<table id="datatable">
+	<thead>
+		<tr>
+			<th></th>
+			<th>Jane</th>
+			<th>John</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Apples</th>
+			<td>3</td>
+			<td>4</td>
+		</tr>
+		<tr>
+			<th>Pears</th>
+			<td>2</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<th>Plums</th>
+			<td>5</td>
+			<td>11</td>
+		</tr>
+		<tr>
+			<th>Bananas</th>
+			<td>1</td>
+			<td>1</td>
+		</tr>
+		<tr>
+			<th>Oranges</th>
+			<td>2</td>
+			<td>4</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+
+</html>
